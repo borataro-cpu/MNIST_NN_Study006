@@ -22,7 +22,6 @@
     --ok: #2e6f3d;
     --code-bg: #1c1812;
     --code-fg: #f4ede0;
-    --serif: "Noto Serif JP", serif;
     --sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
     --mono: "JetBrains Mono", "Menlo", monospace;
   }
@@ -74,7 +73,7 @@
     letter-spacing: 0.12em;
   }
 
-  /* ---------- Microwave illustration (pure CSS) ---------- */
+  /* ====== microwave illustration ====== */
   .mw {
     position: relative;
     width: 100%;
@@ -114,27 +113,42 @@
     to { transform: rotate(360deg); }
   }
   .mw-plate {
-    width: 60%;
+    width: 65%;
     aspect-ratio: 1;
     border-radius: 50%;
     background: rgba(255,255,255,0.4);
     box-shadow: inset 0 0 0 3px rgba(0,0,0,0.1);
     position: relative;
     z-index: 1;
-  }
-  .mw-plate .food {
-    position: absolute;
-    inset: 18%;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #c0532a, #8a3a18);
-    box-shadow: 0 6px 10px -4px rgba(0,0,0,0.4);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
+    flex-direction: column;
+    gap: 6px;
+    padding: 8%;
+    box-sizing: border-box;
+  }
+  .mw-plate.empty {
+    background: transparent;
+    border: 3px dashed #b4a584;
+  }
+  .food-chip {
+    background: linear-gradient(135deg, #c0532a, #8a3a18);
     color: #fbf7ee;
-    font-size: 22px;
-    letter-spacing: 0.1em;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 8px -2px rgba(0,0,0,0.3);
+  }
+  .food-chip.cool {
+    background: #6a5a45;
+    color: #d9cab0;
+    box-shadow: none;
+  }
+  .food-chip.glow {
+    box-shadow: 0 0 18px rgba(255,180,100,0.7), 0 4px 8px -2px rgba(0,0,0,0.3);
   }
   .mw-controls {
     background: #3a2a1c;
@@ -149,9 +163,9 @@
     background: #1a120a;
     color: var(--glow);
     font-family: var(--mono);
-    font-size: 22px;
+    font-size: 24px;
     text-align: center;
-    padding: 8px 6px;
+    padding: 10px 6px;
     border-radius: 4px;
     letter-spacing: 0.1em;
   }
@@ -159,214 +173,20 @@
     background: #5a4030;
     color: #fbf7ee;
     border-radius: 4px;
-    padding: 8px 6px;
+    padding: 10px 6px;
     text-align: center;
     font-family: var(--mono);
-    font-size: 13px;
+    font-size: 16px;
     border-top: 1px solid #7a5a44;
   }
   .mw-btn.primary {
     background: var(--accent);
     color: #fff;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 16px;
   }
 
-  /* ===================== SLIDE 1 — Title ===================== */
-  .s-title {
-    display: grid;
-    grid-template-columns: 1.05fr 1fr;
-    padding: 96px 96px;
-    gap: 80px;
-    align-items: center;
-    background:
-      radial-gradient(circle at 85% 20%, #f2d6a5 0%, transparent 45%),
-      var(--bg);
-  }
-  .s-title h1 {
-    font-size: 96px;
-    font-weight: 900;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    margin: 28px 0 0;
-  }
-  .s-title h1 .hl {
-    color: var(--accent);
-    position: relative;
-    display: inline-block;
-  }
-  .s-title h1 .hl::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -6px;
-    height: 8px;
-    background: var(--glow);
-    opacity: 0.5;
-    z-index: -1;
-  }
-  .s-title .lead {
-    margin-top: 36px;
-    font-size: 26px;
-    color: var(--ink-2);
-    line-height: 1.8;
-    max-width: 720px;
-  }
-  .s-title .meta {
-    margin-top: 64px;
-    display: flex;
-    gap: 40px;
-    font-family: var(--mono);
-    font-size: 24px;
-    letter-spacing: 0.1em;
-    color: var(--ink-3);
-    text-transform: uppercase;
-  }
-  .s-title .meta span { display: block; color: var(--ink); margin-top: 6px; font-size: 26px; text-transform: none; font-family: var(--sans); }
-  .s-title .mw-wrap {
-    aspect-ratio: 1.05/1;
-    align-self: center;
-  }
-
-  /* ===================== SLIDE 2 — Big picture ===================== */
-  .s-overview {
-    padding: 80px 96px;
-    display: flex;
-    flex-direction: column;
-  }
-  .s-overview h2 {
-    font-size: 56px;
-    font-weight: 800;
-    margin: 18px 0 12px;
-    line-height: 1.25;
-  }
-  .s-overview .sub {
-    color: var(--ink-2);
-    font-size: 26px;
-    max-width: 1100px;
-    line-height: 1.7;
-  }
-  .timeline {
-    margin-top: 56px;
-    display: grid;
-    grid-template-columns: 1fr 60px 1fr 60px 1fr;
-    align-items: stretch;
-    gap: 0;
-  }
-  .tl-card {
-    background: var(--paper);
-    border: 1px solid var(--rule);
-    border-radius: 14px;
-    padding: 32px 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    position: relative;
-  }
-  .tl-card .stage {
-    font-family: var(--mono);
-    font-size: 18px;
-    letter-spacing: 0.18em;
-    color: var(--ink-3);
-  }
-  .tl-card .label {
-    font-size: 30px;
-    font-weight: 800;
-    letter-spacing: -0.01em;
-  }
-  .tl-card .label .en {
-    font-family: var(--mono);
-    color: var(--accent);
-    margin-right: 10px;
-  }
-  .tl-card .meta {
-    font-family: var(--mono);
-    font-size: 17px;
-    color: var(--ink-3);
-    margin-top: auto;
-    padding-top: 12px;
-    border-top: 1px dashed var(--rule);
-    letter-spacing: 0.06em;
-  }
-  .tl-card.heat { background: linear-gradient(180deg, #ffe6c0, #f2a261); border-color: #e88243; }
-  .tl-card.heat .stage,
-  .tl-card.heat .meta { color: #5a2e10; }
-  .tl-card.done { background: #213f25; color: #f4ede0; border-color: #1a3220; }
-  .tl-card.done .stage { color: #b4d0b6; }
-  .tl-card.done .label .en { color: var(--glow); }
-  .tl-card.done .meta { color: #b4d0b6; border-top-color: rgba(255,255,255,0.2); }
-
-  .tl-arrow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--ink-3);
-    font-family: var(--mono);
-    font-size: 26px;
-  }
-  .tl-arrow::after {
-    content: "▶";
-  }
-
-  /* ===================== SLIDE 3,4,5 — concept cards ===================== */
-  .s-concept {
-    padding: 80px 96px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 72px;
-    align-items: center;
-  }
-  .s-concept .left h2 {
-    margin: 18px 0 0;
-    font-size: 96px;
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: -0.02em;
-  }
-  .s-concept .left h2 .en {
-    display: block;
-    font-family: var(--mono);
-    color: var(--accent);
-    font-size: 96px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 6px;
-  }
-  .s-concept .left .ja-small {
-    font-size: 26px;
-    color: var(--ink-3);
-    margin-top: 10px;
-    letter-spacing: 0.1em;
-  }
-  .s-concept .left .body {
-    margin-top: 36px;
-    font-size: 24px;
-    line-height: 1.85;
-    max-width: 560px;
-    color: var(--ink);
-  }
-  .s-concept .left .body strong {
-    background: linear-gradient(transparent 60%, var(--glow) 60%);
-    font-weight: 700;
-  }
-  .s-concept .left .note {
-    margin-top: 28px;
-    font-size: 22px;
-    color: var(--ink-3);
-    line-height: 1.6;
-    padding-left: 16px;
-    border-left: 3px solid var(--rule);
-    max-width: 560px;
-  }
-  .s-concept .right {
-    aspect-ratio: 1.05/1;
-    width: 100%;
-    max-width: 620px;
-    justify-self: end;
-  }
-
-  /* state callout on the microwave for each slide */
+  /* ======= state pill on microwave ======= */
   .state-tag {
     position: absolute;
     top: -18px;
@@ -399,27 +219,326 @@
     box-shadow: 0 12px 24px -10px rgba(0,0,0,0.4);
     z-index: 6;
   }
-  .chime::after {
+
+  /* ===================== SLIDE 1 — Title ===================== */
+  .s-title {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    padding: 96px 96px;
+    gap: 80px;
+    align-items: center;
+    background:
+      radial-gradient(circle at 85% 20%, #f2d6a5 0%, transparent 45%),
+      var(--bg);
+  }
+  .s-title h1 {
+    font-size: 96px;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 28px 0 0;
+  }
+  .s-title h1 .hl {
+    color: var(--accent);
+    position: relative;
+    display: inline-block;
+  }
+  .s-title h1 .hl::after {
     content: "";
     position: absolute;
-    left: 24px;
-    bottom: -10px;
-    border: 8px solid transparent;
-    border-top-color: var(--ink);
-    transform: rotate(-10deg);
+    left: 0; right: 0; bottom: -6px;
+    height: 8px;
+    background: var(--glow);
+    opacity: 0.5;
+    z-index: -1;
+  }
+  .s-title .lead {
+    margin-top: 36px;
+    font-size: 26px;
+    color: var(--ink-2);
+    line-height: 1.8;
+    max-width: 720px;
+  }
+  .s-title .meta {
+    margin-top: 64px;
+    display: flex;
+    gap: 40px;
+    font-family: var(--mono);
+    font-size: 24px;
+    letter-spacing: 0.1em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+  }
+  .s-title .meta span { display: block; color: var(--ink); margin-top: 6px; font-size: 26px; font-family: var(--sans); text-transform: none; }
+  .s-title .mw-wrap { aspect-ratio: 1.05/1; align-self: center; }
+
+  /* ===================== SLIDE 2 — Overview / Box ===================== */
+  .s-overview {
+    padding: 72px 96px;
+    display: flex;
+    flex-direction: column;
+  }
+  .s-overview h2 {
+    font-size: 56px;
+    font-weight: 800;
+    margin: 18px 0 12px;
+    line-height: 1.25;
+  }
+  .s-overview .sub {
+    color: var(--ink-2);
+    font-size: 26px;
+    max-width: 1300px;
+    line-height: 1.7;
   }
 
-  /* ===================== SLIDE 6 — code ===================== */
+  .box {
+    margin-top: 36px;
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    border-radius: 24px;
+    padding: 40px 44px 36px;
+    position: relative;
+    box-shadow: 0 24px 40px -24px rgba(0,0,0,0.25);
+  }
+  .box-tag {
+    position: absolute;
+    top: -18px;
+    left: 36px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--mono);
+    font-size: 18px;
+    letter-spacing: 0.18em;
+    padding: 8px 20px;
+    border-radius: 999px;
+  }
+  .box-head {
+    display: flex;
+    align-items: baseline;
+    gap: 22px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .box-head .def-token {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 44px;
+    font-weight: 700;
+  }
+  .box-head .rule-name {
+    font-family: var(--mono);
+    font-size: 44px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .box-head .equals {
+    font-size: 32px;
+    color: var(--ink-3);
+  }
+  .box-head .rule-desc {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  /* magic point callout on overview slide */
+  .magic {
+    margin: 18px 0 26px;
+    background: linear-gradient(90deg, #fff3d8 0%, #ffe6c0 100%);
+    border: 1px solid #e8c98a;
+    border-left: 6px solid var(--accent);
+    border-radius: 12px;
+    padding: 18px 26px 18px 22px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 22px;
+    align-items: center;
+  }
+  .magic-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
+    color: var(--glow);
+    font-family: var(--mono);
+    font-size: 16px;
+    letter-spacing: 0.18em;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .magic-badge::before {
+    content: "\2726";
+    color: var(--glow);
+    font-size: 18px;
+  }
+  .magic-body {
+    font-size: 22px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .magic-body .k {
+    background: var(--accent);
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 6px;
+    font-weight: 700;
+    margin: 0 2px;
+    white-space: nowrap;
+  }
+  .magic-body .k.alt {
+    background: var(--ink);
+    color: var(--glow);
+  }
+
+  .box-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .b-step {
+    border-radius: 16px;
+    padding: 24px 24px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    background: var(--bg-warm);
+    border: 1px solid #c8b48f;
+  }
+  .b-step.heat { background: linear-gradient(180deg, #ffe6c0, #f2a261); border-color: #e88243; }
+  .b-step.done { background: #213f25; color: var(--paper); border-color: #1a3220; }
+  .b-step .num {
+    position: absolute;
+    top: -16px;
+    left: 20px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .b-step.done .num { background: var(--glow); color: var(--ink); }
+  .b-step .stage {
+    font-family: var(--mono);
+    font-size: 16px;
+    letter-spacing: 0.18em;
+    color: var(--ink-3);
+  }
+  .b-step.heat .stage { color: #5a2e10; }
+  .b-step.done .stage { color: #b4d0b6; }
+  .b-step .label {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-top: 2px;
+  }
+  .b-step .label .en {
+    font-family: var(--mono);
+    color: var(--accent);
+    margin-right: 8px;
+  }
+  .b-step.done .label .en { color: var(--glow); }
+  .b-step .desc {
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .b-step.done .desc { color: var(--paper); }
+  .b-step .code {
+    font-family: var(--mono);
+    font-size: 16px;
+    color: var(--ink-3);
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px dashed rgba(0,0,0,0.18);
+  }
+  .b-step.heat .code { color: #5a2e10; }
+  .b-step.done .code { color: #b4d0b6; border-top-color: rgba(255,255,255,0.18); }
+
+  /* ===================== Concept slides (3 / 4 / 5 / 6) ===================== */
+  .s-concept {
+    padding: 80px 96px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: center;
+  }
+  .s-concept .left h2 {
+    margin: 18px 0 0;
+    font-size: 76px;
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+  .s-concept .left h2 .en {
+    display: block;
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+    word-break: break-all;
+  }
+  .s-concept .left .ja-small {
+    font-size: 26px;
+    color: var(--ink-3);
+    margin-top: 12px;
+    letter-spacing: 0.06em;
+  }
+  .s-concept .left .body {
+    margin-top: 32px;
+    font-size: 24px;
+    line-height: 1.85;
+    max-width: 620px;
+    color: var(--ink);
+  }
+  .s-concept .left .body strong {
+    background: linear-gradient(transparent 60%, var(--glow) 60%);
+    font-weight: 700;
+  }
+  .s-concept .left .note {
+    margin-top: 24px;
+    font-size: 22px;
+    color: var(--ink-3);
+    line-height: 1.6;
+    padding-left: 16px;
+    border-left: 3px solid var(--rule);
+    max-width: 620px;
+  }
+  .s-concept .right {
+    aspect-ratio: 1.05/1;
+    width: 100%;
+    max-width: 620px;
+    justify-self: end;
+  }
+
+  /* extra plate-stack vis on slide 5 */
+  .stack-wrap {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  /* ===================== SLIDE 7 — Code walkthrough ===================== */
   .s-code {
     padding: 64px 96px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.15fr 1fr;
     gap: 48px;
     align-items: center;
   }
-  .s-code .head {
-    grid-column: 1 / -1;
-  }
+  .s-code .head { grid-column: 1 / -1; }
   .s-code h2 {
     font-size: 56px;
     font-weight: 800;
@@ -437,8 +556,8 @@
     border-radius: 16px;
     padding: 44px 36px 32px;
     font-family: var(--mono);
-    font-size: 24px;
-    line-height: 1.7;
+    font-size: 22px;
+    line-height: 1.65;
     box-shadow: 0 24px 48px -24px rgba(0,0,0,0.5);
     position: relative;
   }
@@ -449,10 +568,7 @@
     display: flex;
     gap: 6px;
   }
-  .codeblock .dots span {
-    width: 11px; height: 11px; border-radius: 50%;
-    background: #4a3a2a;
-  }
+  .codeblock .dots span { width: 11px; height: 11px; border-radius: 50%; background: #4a3a2a; }
   .codeblock .dots span:first-child { background: #ff5f56; }
   .codeblock .dots span:nth-child(2) { background: #ffbd2e; }
   .codeblock .dots span:nth-child(3) { background: #27c93f; }
@@ -472,13 +588,13 @@
   .tok-ret { color: #ff7a52; font-weight: 600; }
   .tok-num { color: #b4d0b6; }
   .tok-str { color: #b4d0b6; }
-  .tok-com { color: #6a5a45; font-style: italic; }
+  .tok-com { color: #8a7a5a; font-style: italic; }
   .tok-var { color: #e0c890; }
 
   .anno {
     display: grid;
-    gap: 22px;
-    font-size: 22px;
+    gap: 18px;
+    font-size: 20px;
     line-height: 1.6;
   }
   .anno-row {
@@ -491,128 +607,154 @@
     width: 18px; height: 18px;
     border-radius: 50%;
     background: var(--accent);
-    margin-top: 4px;
+    margin-top: 6px;
   }
+  .anno-row .dot.box { background: var(--ink); }
+  .anno-row .dot.plate { background: var(--ink-3); }
   .anno-row .dot.heat { background: var(--accent-soft); }
   .anno-row .dot.done { background: var(--ok); }
-  .anno-row .lbl { font-family: var(--mono); color: var(--accent); font-size: 18px; letter-spacing: 0.12em; }
+  .anno-row .lbl {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 16px;
+    letter-spacing: 0.12em;
+  }
+  .anno-row .lbl.box { color: var(--ink); }
+  .anno-row .lbl.plate { color: var(--ink-3); }
   .anno-row .lbl.heat { color: #a55a2a; }
   .anno-row .lbl.done { color: var(--ok); }
   .anno-row p { margin: 4px 0 0; color: var(--ink); }
 
-  /* ===================== SLIDE 7 — argument names question ===================== */
-  .s-question {
-    padding: 80px 96px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background:
-      radial-gradient(circle at 90% 90%, #ead9bc 0%, transparent 50%),
-      var(--bg);
-  }
-  .s-question .q-mark {
-    font-family: var(--serif);
-    font-size: 280px;
-    font-weight: 700;
-    line-height: 0.8;
-    color: var(--accent);
-    opacity: 0.18;
-    position: absolute;
-    top: 60px;
-    right: 96px;
-  }
-  .s-question h2 {
-    font-size: 76px;
-    font-weight: 900;
-    line-height: 1.25;
-    margin: 24px 0 0;
-    max-width: 1300px;
-  }
-  .s-question h2 .hl {
-    color: var(--accent);
-  }
-  .s-question .lead {
-    margin-top: 40px;
-    font-size: 26px;
-    color: var(--ink-2);
-    max-width: 1300px;
-    line-height: 1.8;
-  }
-  .s-question .lead code {
-    font-family: var(--mono);
-    background: var(--paper);
-    padding: 2px 10px;
-    border-radius: 6px;
-    border: 1px solid var(--rule);
-    color: var(--accent);
-    font-size: 24px;
-  }
-
-  /* ===================== SLIDE 8 — mapping ===================== */
-  .s-mapping {
-    padding: 64px 96px;
+  /* ===================== SLIDE 8 — Baton pass ===================== */
+  .s-baton {
+    padding: 72px 96px;
     display: flex;
     flex-direction: column;
   }
-  .s-mapping h2 {
+  .s-baton h2 {
     font-size: 56px;
     font-weight: 800;
     margin: 16px 0 8px;
-    line-height: 1.2;
+    line-height: 1.25;
   }
-  .s-mapping .sub {
+  .s-baton .sub {
     color: var(--ink-2);
-    font-size: 26px;
+    font-size: 24px;
     line-height: 1.7;
     max-width: 1300px;
   }
-  .map-grid {
-    margin-top: 48px;
-    display: grid;
-    grid-template-columns: 1fr 80px 1fr;
-    gap: 0;
-    align-items: stretch;
-  }
-  .map-side {
+  .s-baton .sub strong { color: var(--ink); }
+  .s-baton .sub code {
+    font-family: var(--mono);
     background: var(--paper);
     border: 1px solid var(--rule);
-    border-radius: 18px;
-    padding: 36px 36px 32px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+    padding: 2px 10px;
+    border-radius: 6px;
+    color: var(--accent);
+    font-size: 22px;
+  }
+
+  .baton-stage {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 24px 40px -24px rgba(0,0,0,0.25);
     position: relative;
   }
-  .map-side.outside { background: #fbf7ee; }
-  .map-side.inside { background: #1c1812; color: var(--paper); border-color: #1c1812; }
-  .map-side .role {
+  .baton-side {
+    padding: 36px 40px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: 360px;
+    position: relative;
+  }
+  .baton-side.outside {
+    background: var(--paper);
+    padding-right: 160px;
+  }
+  .baton-side.inside {
+    background: var(--ink);
+    color: var(--paper);
+    padding-left: 160px;
+  }
+  .baton-side .role {
     font-family: var(--mono);
     font-size: 18px;
     letter-spacing: 0.18em;
     color: var(--ink-3);
   }
-  .map-side.inside .role { color: #b4a584; }
-  .map-side .var {
+  .baton-side.inside .role { color: #b4a584; }
+  .baton-side .var {
     font-family: var(--mono);
-    font-size: 38px;
-    font-weight: 600;
+    font-size: 48px;
     color: var(--accent);
+    font-weight: 600;
   }
-  .map-side.inside .var { color: var(--glow); }
-  .map-side .meaning {
-    font-size: 24px;
-    line-height: 1.65;
+  .baton-side.inside .var { color: var(--glow); }
+  .baton-side .meaning {
+    font-size: 22px;
+    line-height: 1.6;
   }
-  .map-side .object {
-    margin-top: auto;
+
+  /* the baton itself, sitting between the two sides */
+  .baton-pass {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding-top: 22px;
-    border-top: 1px dashed var(--rule);
+    gap: 14px;
   }
-  .map-side.inside .object { border-top-color: rgba(255,255,255,0.15); }
-  .map-side .object-icon {
+  .baton {
+    width: 200px;
+    height: 56px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #c0532a 0%, #d8541f 50%, #c0532a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.05em;
+    box-shadow: 0 14px 28px -8px rgba(0,0,0,0.45), inset 0 -3px 0 rgba(0,0,0,0.2), inset 0 2px 0 rgba(255,255,255,0.25);
+    position: relative;
+  }
+  .baton::before, .baton::after {
+    content: "";
+    position: absolute;
+    top: 8px; bottom: 8px;
+    width: 14px;
+    border-radius: 999px;
+    background: rgba(0,0,0,0.18);
+  }
+  .baton::before { left: 14px; }
+  .baton::after { right: 14px; }
+  .baton-arrow {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 36px;
+    font-weight: 700;
+  }
+
+  /* data card on each side */
+  .data-card {
+    margin-top: auto;
+    background: var(--bg-warm);
+    border-radius: 14px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .baton-side.inside .data-card { background: #2c2418; }
+  .data-card .icon {
     width: 72px;
     height: 72px;
     border-radius: 14px;
@@ -622,64 +764,45 @@
     justify-content: center;
     color: #fbf7ee;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 16px;
+    text-align: center;
+    line-height: 1.15;
     flex-shrink: 0;
   }
-  .map-side.inside .object-icon {
-    background: linear-gradient(135deg, #6a4030, #3a2418);
+  .baton-side.inside .data-card .icon {
+    background: #3a2a1c;
     border: 2px dashed #b4a584;
     color: #b4a584;
-    font-size: 14px;
-    text-align: center;
-    line-height: 1.2;
   }
-  .map-side .object-meta {
-    font-size: 20px;
+  .data-card .meta {
+    font-size: 18px;
     line-height: 1.5;
     color: var(--ink-2);
   }
-  .map-side.inside .object-meta { color: #b4a584; }
+  .baton-side.inside .data-card .meta { color: #b4a584; }
+  .data-card .meta b { color: var(--ink); }
+  .baton-side.inside .data-card .meta b { color: var(--paper); }
 
-  .map-arrow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .map-arrow .ar {
-    font-family: var(--mono);
-    color: var(--accent);
-    font-size: 28px;
-  }
-  .map-arrow .word {
-    writing-mode: vertical-rl;
-    font-family: var(--mono);
-    font-size: 18px;
-    color: var(--ink-3);
-    letter-spacing: 0.2em;
-  }
-
-  .mapping-summary {
-    margin-top: 40px;
+  .baton-summary {
+    margin-top: 32px;
     background: var(--ink);
     color: var(--paper);
     border-radius: 16px;
-    padding: 28px 36px;
-    font-size: 22px;
-    line-height: 1.7;
+    padding: 26px 36px;
+    font-size: 24px;
+    line-height: 1.65;
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 220px 1fr;
     gap: 32px;
     align-items: center;
   }
-  .mapping-summary .lbl {
+  .baton-summary .lbl {
     font-family: var(--mono);
     font-size: 18px;
     letter-spacing: 0.18em;
     color: var(--glow);
   }
-  .mapping-summary code {
+  .baton-summary code {
     font-family: var(--mono);
     background: rgba(255,255,255,0.08);
     padding: 2px 10px;
@@ -688,9 +811,9 @@
     font-size: 22px;
   }
 
-  /* ===================== SLIDE 9 — summary ===================== */
+  /* ===================== SLIDE 9 — Summary ===================== */
   .s-summary {
-    padding: 80px 96px;
+    padding: 72px 96px;
     display: flex;
     flex-direction: column;
     background:
@@ -707,22 +830,22 @@
     color: var(--ink-2);
     font-size: 26px;
     line-height: 1.7;
-    max-width: 1200px;
+    max-width: 1300px;
   }
   .recipe {
-    margin-top: 48px;
+    margin-top: 40px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
   }
   .recipe .card {
     background: var(--paper);
     border-radius: 14px;
     border: 1px solid var(--rule);
-    padding: 32px 28px;
+    padding: 26px 24px 22px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 12px;
   }
   .recipe .card .step {
     font-family: var(--mono);
@@ -731,29 +854,32 @@
     letter-spacing: 0.2em;
   }
   .recipe .card .ttl {
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 800;
     line-height: 1.35;
   }
   .recipe .card .ttl .en {
+    display: block;
     font-family: var(--mono);
     color: var(--accent);
-    margin-right: 8px;
+    font-size: 20px;
+    margin-bottom: 4px;
+    word-break: break-all;
   }
   .recipe .card .body {
-    font-size: 20px;
-    line-height: 1.75;
+    font-size: 18px;
+    line-height: 1.7;
     color: var(--ink-2);
   }
   .takeaway {
-    margin-top: 40px;
-    padding: 32px 40px;
+    margin-top: 32px;
+    padding: 30px 40px;
     background: var(--ink);
     color: var(--paper);
     border-radius: 18px;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 700;
-    line-height: 1.6;
+    line-height: 1.65;
     display: flex;
     align-items: center;
     gap: 24px;
@@ -778,13 +904,13 @@
   <!-- =================== SLIDE 1 / Title =================== -->
   <section class="s-title" data-screen-label="01 Title">
     <div>
-      <div class="kicker">Function Workshop · 関数勉強会</div>
+      <div class="kicker">Function Workshop · 朝活Python勉強会</div>
       <h1>電子レンジで<br/>わかる、<br/><span class="hl">関数のひとまとまり</span></h1>
       <p class="lead">
         Python の <code style="font-family:var(--mono);color:var(--accent);">def</code> から
         <code style="font-family:var(--mono);color:var(--accent);">return</code> までを、<br/>
-        台所にある一台の電子レンジに見立てて、<br/>
-        「関数」というひとまとまりの正体を理解します。
+        一台の「魔法の電子レンジ」に見立てて、<br/>
+        関数というひとまとまりの正体を理解します。
       </p>
       <div class="meta">
         <div>Topic<span>関数 / 引数 / 戻り値</span></div>
@@ -793,10 +919,14 @@
     <div class="mw-wrap">
       <div class="mw">
         <div class="mw-screen heating">
-          <div class="mw-plate"><div class="food">カレー</div></div>
+          <div class="mw-plate">
+            <div class="food-chip glow">バーガー</div>
+            <div class="food-chip glow">ポテト</div>
+            <div class="food-chip glow">ミルク</div>
+          </div>
         </div>
         <div class="mw-controls">
-          <div class="mw-display">00:42</div>
+          <div class="mw-display">RUN</div>
           <div class="mw-btn">あたため</div>
           <div class="mw-btn">解凍</div>
           <div class="mw-btn">ごはん</div>
@@ -811,65 +941,83 @@
   <!-- =================== SLIDE 2 / Overview =================== -->
   <section class="s-overview" data-screen-label="02 Overview">
     <div class="kicker">01 — 全体像</div>
-    <h2>関数とは「電子レンジ１台」のこと。</h2>
+    <h2><span style="color:var(--accent);">def</span> は、中身の処理をぜんぶ包み込む「箱」そのもの。</h2>
     <p class="sub">
-      Python の関数は、始まりの <strong style="color:var(--accent);font-family:var(--mono);">def</strong> から
-      終わりの <strong style="color:var(--accent);font-family:var(--mono);">return</strong> まで、<br/>
-      ひとまとまりの「道具」として動きます。途中で勝手に動き出しません。
+      関数 ＝ 並んだ３ステップではなく、<strong style="color:var(--ink);">「箱の中に、空のお皿・加熱・出力がぜんぶ入っている」</strong> イメージ。<br/>
+      箱（ルール）を作ってから、その中で順番に処理が走ります。
     </p>
 
-    <div class="timeline">
-      <div class="tl-card">
-        <div class="stage">STEP 01 · 設計</div>
-        <div class="label"><span class="en">def</span>ボタン作り</div>
-        <div>名前と、入れるもの（引数）を決める。<br/>まだ動かない。</div>
-        <div class="meta">def 温め(食品):</div>
+    <div class="box">
+      <span class="box-tag">DEF · 電子レンジの箱（ルール）</span>
+      <div class="box-head">
+        <span class="def-token">def</span>
+        <span class="rule-name">温め(menu_list):</span>
+        <span class="equals">＝</span>
+        <span class="rule-desc">「温め」という箱（ルール）を作る</span>
       </div>
-      <div class="tl-arrow"></div>
-      <div class="tl-card heat">
-        <div class="stage">STEP 02 · 加熱</div>
-        <div class="label"><span class="en">for...</span>加熱中</div>
-        <div>中でぐるぐる回りながら、<br/>一生懸命に計算している状態。</div>
-        <div class="meta">for n in 食品: ...</div>
+      <p class="box-howto">どういうルールか？ → <strong>具材リスト（menu_list）を一つずつ温め、お皿に積み上げて出力する</strong></p>
+
+      <div class="magic">
+        <div class="magic-badge">MAGIC</div>
+        <div class="magic-body">
+          このレンジは <strong>「魔法のレンジ」</strong>。<br/>
+          入れた具材は中で <span class="k">一つずつ順番に</span> 温められ、温まったものから順に <span class="k alt">別のお皿</span> に乗せていく仕組みです。
+        </div>
       </div>
-      <div class="tl-arrow"></div>
-      <div class="tl-card done">
-        <div class="stage">STEP 03 · 完成</div>
-        <div class="label"><span class="en">return</span>チーン！</div>
-        <div>温まった料理を、<br/>呼び出した場所へ届ける。</div>
-        <div class="meta">return 結果</div>
+      <div class="box-steps">
+        <div class="b-step">
+          <div class="num">1</div>
+          <div class="stage">SET · 空のお皿をセット</div>
+          <div class="label"><span class="en">hot_menu = 0</span></div>
+          <div class="desc">温まったものを乗せていく、<br/>空のトレイを箱の中に用意。</div>
+          <div class="code">hot_menu = 0</div>
+        </div>
+        <div class="b-step heat">
+          <div class="num">2</div>
+          <div class="stage">HEATING · 加熱中（繰り返し）</div>
+          <div class="label"><span class="en">for ...</span>一つずつ温める</div>
+          <div class="desc">具材を順番に加熱して、<br/>お皿（hot_menu）に積み上げる。</div>
+          <div class="code">for 具材 in menu_list:</div>
+        </div>
+        <div class="b-step done">
+          <div class="num">3</div>
+          <div class="stage">DONE · チーン！出力</div>
+          <div class="label"><span class="en">return</span>お皿を外へ</div>
+          <div class="desc">積み上がったお皿を、<br/>呼び出し元へポンと放り出す。</div>
+          <div class="code">return hot_menu</div>
+        </div>
       </div>
     </div>
 
-    <div class="page-tag">関数 ＝ レンジ１台</div>
+    <div class="page-tag">def ＝ 中身を包み込む箱</div>
     <div class="page-num">02 / 09</div>
   </section>
 
   <!-- =================== SLIDE 3 / def =================== -->
-  <section class="s-concept" data-screen-label="03 def">
+  <section class="s-concept" data-screen-label="03 def 箱を作る">
     <div class="left">
-      <div class="kicker">02 — 設計フェーズ</div>
+      <div class="kicker">02 — 箱（ルール）を作る</div>
       <h2>
-        <span class="en">def</span>
-        ボタン作り
-        <span class="ja-small">デフ ＝ DEFine（定義する）</span>
+        <span class="en">def 温め(menu_list):</span>
+        レンジの箱
+        <div class="ja-small">＝ 名前と入口（引数）を決める、ルールの宣言</div>
       </h2>
       <p class="body">
-        「このボタン（関数）の名前は <strong>『温め』</strong> にして、<br/>
-        中に <strong>『食品』</strong> を入れられるようにしよう」と、<br/>
-        道具のルールを決める作業です。
+        「この箱は <strong>『温め』</strong> という名前で、<br/>
+        中に <strong>『具材リスト（menu_list）』</strong> を入れられるようにしよう」と、<br/>
+        箱のルールを宣言します。
       </p>
       <p class="note">
-        ※ この段階ではまだレンジは動きません。<br/>
-        　ボタンを「作っただけ」の状態です。
+        ※ この段階では、まだ何も加熱されません。<br/>
+        　「箱と入口を作っただけ」の状態です。
       </p>
     </div>
     <div class="right">
       <div class="mw">
-        <span class="state-tag">DEFINING / 設計中</span>
+        <span class="state-tag">DEFINING / 箱を作る</span>
         <div class="mw-screen">
-          <div class="mw-plate" style="opacity:0.4;border:2px dashed #b4a584;background:transparent;">
-            <div class="food" style="background:transparent;color:#8a7a62;border:2px dashed #b4a584;font-size:16px;">食品<br/>（仮）</div>
+          <div class="mw-plate empty">
+            <div style="color:#8a7a62; font-size:20px; letter-spacing:0.05em;">menu_list<br/><span style="font-size:16px;">（仮の入口）</span></div>
           </div>
         </div>
         <div class="mw-controls">
@@ -881,36 +1029,82 @@
         </div>
       </div>
     </div>
-    <div class="page-tag">def · 設計</div>
+    <div class="page-tag">def · 箱の宣言</div>
     <div class="page-num">03 / 09</div>
   </section>
 
-  <!-- =================== SLIDE 4 / for =================== -->
-  <section class="s-concept" data-screen-label="04 for / 加熱中">
+  <!-- =================== SLIDE 4 / hot_menu = 0 =================== -->
+  <section class="s-concept" data-screen-label="04 空のお皿">
     <div class="left">
-      <div class="kicker">03 — 加熱フェーズ</div>
+      <div class="kicker">03 — 空のお皿をセット</div>
       <h2>
-        <span class="en">for…</span>
-        加熱中
-        <span class="ja-small">関数の「中身の処理」</span>
+        <span class="en">hot_menu = 0</span>
+        空のお皿
+        <div class="ja-small">＝ 温めたものを乗せていく、出力先の準備</div>
       </h2>
       <p class="body">
-        ボタンが押された後、中でレンジが <strong>ぐるぐる回りながら</strong>、<br/>
-        一生懸命に計算（加熱）している状態です。
+        加熱を始める前に、<strong>温まったものを乗せていく「空のトレイ」</strong> を<br/>
+        レンジの中に用意します。
       </p>
       <p class="note">
-        for 文・if 文・計算・データの集計など、<br/>
-        関数の「働き」はすべてこの中で起きています。
+        加熱結果をまとめておく "受け皿"。<br/>
+        これが無いと、温めたものが入る場所がありません。
+      </p>
+    </div>
+    <div class="right">
+      <div class="mw">
+        <span class="state-tag">SET / お皿をセット</span>
+        <div class="mw-screen">
+          <div class="mw-plate empty">
+            <div style="color:#8a7a62; font-size:22px; font-weight:700;">hot_menu</div>
+            <div style="color:#b4a584; font-size:16px; letter-spacing:0.1em;">空のお皿</div>
+          </div>
+        </div>
+        <div class="mw-controls">
+          <div class="mw-display">00:00</div>
+          <div class="mw-btn">あたため</div>
+          <div class="mw-btn">解凍</div>
+          <div class="mw-btn">ごはん</div>
+          <div class="mw-btn primary" style="background:#5a4030;">READY</div>
+        </div>
+      </div>
+    </div>
+    <div class="page-tag">空のお皿をセット</div>
+    <div class="page-num">04 / 09</div>
+  </section>
+
+  <!-- =================== SLIDE 5 / for =================== -->
+  <section class="s-concept" data-screen-label="05 for / 一つずつ加熱">
+    <div class="left">
+      <div class="kicker">04 — 加熱中（繰り返し作業）</div>
+      <h2>
+        <span class="en">for 具材 in menu_list:</span>
+        一つずつ温める
+        <div class="ja-small">＝ 順番に加熱して、お皿に積み上げる</div>
+      </h2>
+      <p class="body">
+        魔法のレンジが「まずは <strong>バーガー</strong>、次に <strong>ポテト</strong>、<br/>
+        最後に <strong>ミルク</strong>……」と、<br/>
+        具材を <strong>一つずつ順番に加熱</strong> し、<br/>
+        温まったものを <strong>お皿（hot_menu）に積み上げて</strong> いきます。
+      </p>
+      <p class="note">
+        ループはレンジの中の「繰り返し作業」。<br/>
+        外からはぐるぐる回っているだけに見える。
       </p>
     </div>
     <div class="right">
       <div class="mw">
         <span class="state-tag heat">HEATING / 加熱中</span>
         <div class="mw-screen heating">
-          <div class="mw-plate"><div class="food">カレー</div></div>
+          <div class="mw-plate">
+            <div class="food-chip glow">バーガー ♨</div>
+            <div class="food-chip glow">ポテト ♨</div>
+            <div class="food-chip cool" style="opacity:0.7;">ミルク（次）</div>
+          </div>
         </div>
         <div class="mw-controls">
-          <div class="mw-display">00:18</div>
+          <div class="mw-display">02 / 03</div>
           <div class="mw-btn">あたため</div>
           <div class="mw-btn">解凍</div>
           <div class="mw-btn">ごはん</div>
@@ -918,25 +1112,25 @@
         </div>
       </div>
     </div>
-    <div class="page-tag">処理 · 加熱中</div>
-    <div class="page-num">04 / 09</div>
+    <div class="page-tag">for · 一つずつ加熱</div>
+    <div class="page-num">05 / 09</div>
   </section>
 
-  <!-- =================== SLIDE 5 / return =================== -->
-  <section class="s-concept" data-screen-label="05 return">
+  <!-- =================== SLIDE 6 / return =================== -->
+  <section class="s-concept" data-screen-label="06 return">
     <div class="left">
-      <div class="kicker">04 — 完成フェーズ</div>
+      <div class="kicker">05 — チーン！と外へ出す</div>
       <h2>
-        <span class="en">return</span>
-        チーン！
-        <span class="ja-small">リターン ＝ 完成の合図</span>
+        <span class="en">return hot_menu</span>
+        お皿を外へ
+        <div class="ja-small">＝ 完成したお皿を、呼び出し元へ放り出す</div>
       </h2>
       <p class="body">
-        温まった料理を、<strong>レンジの外（呼び出した場所）</strong>へ届けるゴールです。<br/>
-        <strong>return があって初めて</strong>、私たちは温かい料理を受け取れます。
+        すべての具材が温まり、お皿に積み上がったら、<br/>
+        <strong>完成したお皿をレンジの外（呼び出し元）へ</strong> ポンと放り出します。
       </p>
       <p class="note">
-        return が無いと、中で頑張って加熱しても<br/>
+        return が無いと、中で頑張って積み上げても<br/>
         外には何も出てこない（＝ None が返る）ので注意。
       </p>
     </div>
@@ -946,7 +1140,9 @@
         <div class="chime">♪ チーン！</div>
         <div class="mw-screen" style="background:#fbf7ee;">
           <div class="mw-plate" style="background:rgba(255,200,120,0.4);">
-            <div class="food" style="background:linear-gradient(135deg,#e88243,#c0532a);box-shadow:0 0 30px rgba(255,180,100,0.6),0 6px 10px -4px rgba(0,0,0,0.4);">温カレー</div>
+            <div class="food-chip glow">バーガー</div>
+            <div class="food-chip glow">ポテト</div>
+            <div class="food-chip glow">ミルク</div>
           </div>
         </div>
         <div class="mw-controls" style="background:#1a3220;">
@@ -958,182 +1154,171 @@
         </div>
       </div>
     </div>
-    <div class="page-tag">return · 完成</div>
-    <div class="page-num">05 / 09</div>
+    <div class="page-tag">return · チーン！</div>
+    <div class="page-num">06 / 09</div>
   </section>
 
-  <!-- =================== SLIDE 6 / code =================== -->
-  <section class="s-code" data-screen-label="06 Code">
+  <!-- =================== SLIDE 7 / Code =================== -->
+  <section class="s-code" data-screen-label="07 Code">
     <div class="head">
-      <div class="kicker">05 — コードで見る</div>
+      <div class="kicker">06 — コードで見る</div>
       <h2>def から return までを、コードで見比べる。</h2>
-      <p class="sub">同じ「レンジ１台」の構造が、Python コードの中にもそのまま現れます。</p>
+      <p class="sub">「箱の中に、空のお皿・加熱・出力」がぜんぶ入っているのが、コードの形にも現れます。</p>
     </div>
 
     <div class="codeblock">
       <div class="dots"><span></span><span></span><span></span></div>
       <div class="ttl">warm_up.py</div>
 <pre>
-<span class="tok-com"># ▼ ボタン作り（設計だけ。まだ動かない）</span>
-<span class="tok-def">def</span> <span class="tok-fn">温め</span>(<span class="tok-arg">numbers</span>):
-    <span class="tok-com"># ▼ 加熱中（中でぐるぐる計算）</span>
-    <span class="tok-var">合計</span> = <span class="tok-num">0</span>
-    <span class="tok-key">for</span> n <span class="tok-key">in</span> <span class="tok-arg">numbers</span>:
-        <span class="tok-var">合計</span> = <span class="tok-var">合計</span> + n
+<span class="tok-com"># ▼ 【レンジの箱（ルール）】 名前と入口を決める</span>
+<span class="tok-def">def</span> <span class="tok-fn">温め</span>(<span class="tok-arg">menu_list</span>):
 
-    <span class="tok-com"># ▼ チーン！と外へ届ける</span>
-    <span class="tok-ret">return</span> <span class="tok-var">合計</span>
+    <span class="tok-com"># ▼ ① 空のお皿をセット</span>
+    <span class="tok-var">hot_menu</span> = <span class="tok-num">0</span>
+
+    <span class="tok-com"># ▼ ② 加熱中（一つずつ温めて積み上げる）</span>
+    <span class="tok-key">for</span> 具材 <span class="tok-key">in</span> <span class="tok-arg">menu_list</span>:
+        <span class="tok-var">hot_menu</span> = <span class="tok-var">hot_menu</span> + 具材
+
+    <span class="tok-com"># ▼ ③ チーン！完成したお皿を外へ</span>
+    <span class="tok-ret">return</span> <span class="tok-var">hot_menu</span>
 
 
 <span class="tok-com"># ── 呼び出し側 ──────────────</span>
-<span class="tok-var">study_data</span> = [<span class="tok-num">10</span>, <span class="tok-num">20</span>, <span class="tok-num">30</span>]
-<span class="tok-var">結果</span> = <span class="tok-fn">温め</span>(<span class="tok-var">study_data</span>)
+<span class="tok-var">lunch_set</span> = [<span class="tok-num">10</span>, <span class="tok-num">20</span>, <span class="tok-num">30</span>]
+<span class="tok-var">結果</span> = <span class="tok-fn">温め</span>(<span class="tok-var">lunch_set</span>)
 </pre>
     </div>
 
     <div class="anno">
       <div class="anno-row">
-        <div class="dot"></div>
+        <div class="dot box"></div>
         <div>
-          <div class="lbl">DEF · 設計</div>
-          <p><b>def 温め(numbers):</b> で「温め」という名前と、<br/>
-          中に入れる材料 <code style="font-family:var(--mono);color:var(--accent);">numbers</code> を決めている。</p>
+          <div class="lbl box">DEF · 箱（ルール）</div>
+          <p><b>def 温め(menu_list):</b> で「温め」という箱と入口を作る。<br/>この中身がぜんぶ "レンジの内側"。</p>
+        </div>
+      </div>
+      <div class="anno-row">
+        <div class="dot plate"></div>
+        <div>
+          <div class="lbl plate">① SET · 空のお皿</div>
+          <p><b>hot_menu = 0</b> で、温めたものを乗せていく <br/>受け皿を中に用意する。</p>
         </div>
       </div>
       <div class="anno-row">
         <div class="dot heat"></div>
         <div>
-          <div class="lbl heat">HEATING · 加熱中</div>
-          <p>for ループの中で、<code style="font-family:var(--mono);color:#a55a2a;">合計</code> をぐるぐる更新。<br/>
-          これがレンジ内部で「回っている」状態。</p>
+          <div class="lbl heat">② HEATING · 一つずつ温める</div>
+          <p><b>for 具材 in menu_list:</b> で、<br/>具材を順番に加熱し、お皿に積み上げる。</p>
         </div>
       </div>
       <div class="anno-row">
         <div class="dot done"></div>
         <div>
-          <div class="lbl done">RETURN · 完成</div>
-          <p><b>return 合計</b> で、外（呼び出し側）に値を届ける。<br/>
-          受け取った側は <code style="font-family:var(--mono);color:var(--ok);">結果</code> という変数で持つ。</p>
+          <div class="lbl done">③ RETURN · チーン！</div>
+          <p><b>return hot_menu</b> で、完成したお皿を<br/>呼び出し元（<code style="font-family:var(--mono);color:var(--ok);">結果</code>）へ放り出す。</p>
         </div>
       </div>
     </div>
 
     <div class="page-tag">code walkthrough</div>
-    <div class="page-num">06 / 09</div>
-  </section>
-
-  <!-- =================== SLIDE 7 / Question =================== -->
-  <section class="s-question" data-screen-label="07 Question">
-    <div class="q-mark">?</div>
-    <div class="kicker">06 — よくある疑問</div>
-    <h2>
-      呼び出すときは <span class="hl">study_data</span> なのに、<br/>
-      関数の中では <span class="hl">numbers</span>。<br/>
-      ……名前が違うの、なぜ？
-    </h2>
-    <p class="lead">
-      <code>study_data</code> は、あなたが実際にレンジに入れようとしている「カレー（実物のデータ）」。<br/>
-      <code>numbers</code> は、レンジの設計図に書かれた「温めるもの（仮の名前）」。
-    </p>
-
-    <div class="page-tag">よくある疑問</div>
     <div class="page-num">07 / 09</div>
   </section>
 
-  <!-- =================== SLIDE 8 / Mapping =================== -->
-  <section class="s-mapping" data-screen-label="08 Mapping">
-    <div class="kicker">07 — 外と中、ふたつの呼び名</div>
-    <h2>同じ中身に、立場の違う２つの名札がついている。</h2>
-    <p class="sub">レンジは、カレーでも肉まんでも動くように、<strong>あえて汎用的な仮名で待ち構えています。</strong></p>
+  <!-- =================== SLIDE 8 / Baton pass =================== -->
+  <section class="s-baton" data-screen-label="08 Baton pass">
+    <div class="kicker">07 — 引数の名前の違い（バトンタッチ）</div>
+    <h2>同じ中身に、外と中で違う名札。<br/>箱に入った瞬間、名前が <span style="color:var(--accent);">バトンタッチ</span> される。</h2>
+    <p class="sub">
+      外の世界では <code>lunch_set</code>（具体的な実物データ）と呼んでいるものを、<br/>
+      レンジ（関数）の中に入った瞬間、設計図通りの呼び名 <code>menu_list</code> として受け取り直します。
+    </p>
 
-    <div class="map-grid">
-      <div class="map-side outside">
+    <div class="baton-stage">
+      <div class="baton-side outside">
         <div class="role">OUTSIDE · 呼び出し側</div>
-        <div class="var">study_data</div>
+        <div class="var">lunch_set</div>
         <div class="meaning">
-          あなたが <strong>レンジに入れようとしている、<br/>実物の「カレー」</strong>。
+          あなたが <strong>レンジに入れようとしている、<br/>実物の「ランチセット」</strong>。
         </div>
-        <div class="object">
-          <div class="object-icon">CURRY</div>
-          <div class="object-meta">
-            [10, 20, 30]<br/>
+        <div class="data-card">
+          <div class="icon">LUNCH<br/>SET</div>
+          <div class="meta">
+            <b>[バーガー, ポテト, ミルク]</b><br/>
             ＝ 具体的な実物データ
           </div>
         </div>
       </div>
 
-      <div class="map-arrow">
-        <div class="ar">▶</div>
-        <div class="word">代入 / PASS</div>
-        <div class="ar">▶</div>
-      </div>
-
-      <div class="map-side inside">
+      <div class="baton-side inside">
         <div class="role">INSIDE · 関数の中</div>
-        <div class="var">numbers</div>
+        <div class="var">menu_list</div>
         <div class="meaning">
-          設計図に書かれた <strong>「温めるもの（食品）」</strong> という、<br/>関数の中だけの共通の呼び名。
+          設計図通りの <strong>「具材リスト」</strong> として、<br/>
+          バトンを受け取った仮の呼び名。
         </div>
-        <div class="object">
-          <div class="object-icon">FOOD ?</div>
-          <div class="object-meta">
-            中身は何でも OK（カレー / 肉まん / ご飯…）<br/>
-            ＝ 汎用的な仮の名前
+        <div class="data-card">
+          <div class="icon">MENU<br/>LIST</div>
+          <div class="meta">
+            中身は何でも OK（カレーでも肉まんでも）<br/>
+            ＝ レンジ内の共通の呼び名
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="mapping-summary">
-      <div class="lbl">つまり、こういう関係</div>
-      <div>
-        外の世界にある「具体的な実物データ <code>study_data</code>」を、<br/>
-        関数という箱の中だけの「共通の呼び名 <code>numbers</code>」に <b>代入して処理している。</b>
+      <div class="baton-pass">
+        <div class="baton-arrow">▶</div>
+        <div class="baton">バトン</div>
+        <div class="baton-arrow">▶</div>
       </div>
     </div>
 
-    <div class="page-tag">study_data ⇄ numbers</div>
+    <div class="baton-summary">
+      <div class="lbl">つまり、こういう関係</div>
+      <div>
+        外の <code>lunch_set</code>（実物データ）を、関数の入口で受け取り、<br/>
+        箱の中では <code>menu_list</code> という <b>仮の呼び名</b> として処理している。
+      </div>
+    </div>
+
+    <div class="page-tag">lunch_set ⇄ menu_list</div>
     <div class="page-num">08 / 09</div>
   </section>
 
   <!-- =================== SLIDE 9 / Summary =================== -->
   <section class="s-summary" data-screen-label="09 Summary">
     <div class="kicker">08 — まとめ</div>
-    <h2>今日おぼえて帰る、関数の３つの顔。</h2>
-    <p class="sub">関数は「ボタン作り → 加熱中 → チーン！」の３ステップ。<br/>
-    引数の名前は、外と中で違っていて当たり前。</p>
+    <h2>覚えて帰る、関数の４つの顔。</h2>
+    <p class="sub">def という「箱」の中に、空のお皿・加熱・出力がぜんぶ入っている。<br/>
+    引数の名前は、外と中で違っていて当たり前（バトンタッチ）。</p>
 
     <div class="recipe">
       <div class="card">
         <div class="step">STEP 01</div>
-        <div class="ttl"><span class="en">def</span>ボタン作り</div>
-        <div class="body">
-          関数の<strong>名前</strong>と、<strong>入口（引数）</strong>を決めるだけ。<br/>
-          書いた瞬間は、まだ何も動いていない。
-        </div>
+        <div class="ttl"><span class="en">def 温め(menu_list):</span>レンジの箱</div>
+        <div class="body">関数の<strong>名前と入口</strong>を決める。<br/>中身を包む「箱」を宣言するだけ。</div>
       </div>
       <div class="card">
         <div class="step">STEP 02</div>
-        <div class="ttl"><span class="en">for</span>加熱中</div>
-        <div class="body">
-          関数が呼び出されると、中で<strong>処理がぐるぐる回る</strong>。<br/>
-          ループ・条件分岐・計算はぜんぶこの中。
-        </div>
+        <div class="ttl"><span class="en">hot_menu = 0</span>空のお皿</div>
+        <div class="body">温めたものを乗せていく <br/><strong>"受け皿"</strong> を箱の中に用意。</div>
       </div>
       <div class="card">
         <div class="step">STEP 03</div>
-        <div class="ttl"><span class="en">return</span>チーン！</div>
-        <div class="body">
-          結果を <strong>外へ届ける</strong> ゴール。<br/>
-          return を書かないと、外には何も渡らない。
-        </div>
+        <div class="ttl"><span class="en">for 具材 in menu_list:</span>一つずつ温める</div>
+        <div class="body">具材を <strong>順番に加熱</strong> し、<br/>お皿に積み上げる繰り返し作業。</div>
+      </div>
+      <div class="card">
+        <div class="step">STEP 04</div>
+        <div class="ttl"><span class="en">return hot_menu</span>チーン！</div>
+        <div class="body">完成したお皿を <strong>呼び出し元へ</strong> 放り出す。これが無いと外に出ない。</div>
       </div>
     </div>
 
     <div class="takeaway">
       <div class="pill">TAKEAWAY</div>
-      <div>「study_data」は外の実物、「numbers」は中の仮の呼び名。<br/>
-      レンジは中身を選ばないから、わざと汎用的な名前で待っている。</div>
+      <div>外の <code style="font-family:var(--mono);background:rgba(255,255,255,0.1);padding:2px 8px;border-radius:4px;">lunch_set</code> は実物、中の <code style="font-family:var(--mono);background:rgba(255,255,255,0.1);padding:2px 8px;border-radius:4px;">menu_list</code> は仮の呼び名。<br/>
+      箱の入口でバトンタッチして、レンジは中身を選ばずに動く。</div>
     </div>
 
     <div class="page-tag">質問や不明点があればチャットで聞いてください。</div>
